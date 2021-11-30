@@ -9,7 +9,7 @@ import (
 )
 
 func ChangePassword(c echo.Context) error {
-	db := connexion()
+	// db := connexion()
 
 	user := new(User)
 	// user2 := new(User)

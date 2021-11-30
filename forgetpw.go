@@ -14,7 +14,7 @@ import (
 )
 
 func ForgetPw(c echo.Context) error {
-	db := connexion()
+	// db := connexion()
 	user := new(User)
 	if err := c.Bind(user); err != nil {
 		return err

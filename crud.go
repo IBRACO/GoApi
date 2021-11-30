@@ -8,7 +8,7 @@ import (
 )
 
 func GetUserById(c echo.Context) error {
-	db := connexion()
+	// db := connexion()
 	id := c.Param("id")
 	user := User{}
 	db.First(&user, id)
@@ -16,7 +16,7 @@ func GetUserById(c echo.Context) error {
 }
 
 func UpdateUserById(c echo.Context) error {
-	db := connexion()
+	// db := connexion()
 	// User ID from path `users/:id`
 	id := c.Param("id")
 	user := User{}
@@ -29,7 +29,7 @@ func UpdateUserById(c echo.Context) error {
 }
 
 func DeleteUserById(c echo.Context) error {
-	db := connexion()
+	// db := connexion()
 	id := c.Param("id")
 	st := db.Delete(&User{}, id)
 	if int(st.RowsAffected) == 0 {
