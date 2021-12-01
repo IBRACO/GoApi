@@ -2,11 +2,11 @@ package main
 
 import "fmt"
 
-var v string
+var secretKey  string
 
 func main() {
 
-	v,_ = GenerateRsa()
+	secretKey,_ = GenerateRsa()
 
 	tok, err := GenerateJWT(1)
 	if err != nil {

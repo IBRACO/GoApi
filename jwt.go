@@ -13,6 +13,6 @@ func GenerateJWT(id int) (string, error) {
 	claims := t.Claims.(jwt.MapClaims)
 	claims["id"] = id
 	claims["exp"] = time.Now().Add(time.Hour * 24).Unix()
-	token, err := t.SignedString(v)
+	token, err := t.SignedString(secretKey)
 	return token, err
 }

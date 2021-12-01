@@ -24,7 +24,7 @@ func Token(c echo.Context) error {
 		}
 
 		// hmacSampleSecret is a []byte containing your secret, e.g. []byte("my_secret_key")
-		return []byte(v), nil
+		return []byte(secretKey), nil
 	})
 
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
