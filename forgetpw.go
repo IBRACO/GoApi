@@ -35,3 +35,32 @@ func ForgetPw(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, user)
 }
+
+func UpdatePassword(c echo.Context) error {
+	// db := connexion()
+
+	user := new(User)
+	// user2 := new(User)
+	if err := c.Bind(user); err != nil {
+		return err
+	}
+	//  token := c.FormValue("token")
+	passwordSended := user.Password
+
+	result := db.Where("uuid = ?", user.UUID).First(&user)
+	if result.Error != nil {
+		return c.JSON(http.StatusBadRequest, fmt.Sprintf("%v", result.Error))
+	}
+
+	hash,err := GeneratePassword(passwordSended)
+	if err != nil {
+		panic(err)
+	}
+
+
+	user.Password =hash
+	db.Save(&user)
+	sendmail(user.Email, "vous avez changez votre mot de pass avec succee")
+
+	return c.String(http.StatusOK, user.Password)
+}
